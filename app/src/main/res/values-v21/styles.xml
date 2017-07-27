@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
+        <!-- https://code.google.com/p/android/issues/detail?id=202691#c19 -->
+        <item name="bottomSheetDialogTheme">@style/BottomSheetTheme</item>
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+
+    </style>
+
+    <style name="BottomSheetTheme" parent="@style/Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>
