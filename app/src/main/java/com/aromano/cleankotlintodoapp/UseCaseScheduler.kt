@@ -7,6 +7,6 @@ interface UseCaseScheduler {
 
     fun <V : UseCase.ResponseValue> notifyResponse(response: V, callback: UseCase.UseCaseCallback<V>)
 
-    fun <V : UseCase.ResponseValue> onError(error: Error, callback: UseCase.UseCaseCallback<V>)
+    fun <V : UseCase.ResponseValue> onError(error: Throwable, callback: UseCase.UseCaseCallback<V>)
 
 }

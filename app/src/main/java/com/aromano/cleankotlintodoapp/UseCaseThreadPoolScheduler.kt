@@ -24,7 +24,7 @@ class UseCaseThreadPoolScheduler : UseCaseScheduler {
         handler.post { callback.onSuccess(response) }
     }
 
-    override fun <V : UseCase.ResponseValue> onError(error: Error, callback: UseCase.UseCaseCallback<V>) {
+    override fun <V : UseCase.ResponseValue> onError(error: Throwable, callback: UseCase.UseCaseCallback<V>) {
         handler.post { callback.onError(error) }
     }
 }

@@ -1,15 +1,16 @@
 package com.aromano.cleankotlintodoapp
 
-
-class UseCaseHandler private constructor(val scheduler: UseCaseScheduler) {
+// public constructor because we need to mock it during tests
+class UseCaseHandler (val scheduler: UseCaseScheduler) {
 
     companion object {
 
-        private lateinit var inst: UseCaseHandler
+        private var inst: UseCaseHandler? = null
 
+        @Synchronized
         fun getInstance(): UseCaseHandler {
             if (inst == null) inst = UseCaseHandler(UseCaseThreadPoolScheduler())
-            return inst
+            return inst!!
         }
 
     }
@@ -31,7 +32,7 @@ class UseCaseHandler private constructor(val scheduler: UseCaseScheduler) {
     }
 
     private fun <V : UseCase.ResponseValue> notifyError(
-        error: Error, useCaseCallback: UseCase.UseCaseCallback<V>) {
+        error: Throwable, useCaseCallback: UseCase.UseCaseCallback<V>) {
         scheduler.onError(error, useCaseCallback)
     }
 
@@ -42,7 +43,7 @@ class UseCaseHandler private constructor(val scheduler: UseCaseScheduler) {
             useCaseHandler.notifyResponse(response, callback)
         }
 
-        override fun onError(error: Error) {
+        override fun onError(error: Throwable) {
             useCaseHandler.notifyError(error, callback)
         }
     }

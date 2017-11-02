@@ -2,22 +2,31 @@ package com.aromano.cleankotlintodoapp.data.local
 
 import com.aromano.cleankotlintodoapp.data.Response
 import com.aromano.cleankotlintodoapp.domain.model.Task
-import com.aromano.cleankotlintodoapp.tasks.TasksDataSource
+import com.aromano.cleankotlintodoapp.data.TasksDataSource
 
 
 class TasksLocalDataSource(
     val db: AppDatabase
 ) : TasksDataSource {
 
-    override fun getTasks(): Response<List<Task>?, Error?> {
-        return Response(db.taskDao().getTasks(), null)
+    override fun getTasks(): Response<List<Task>> {
+        return Response.Success(db.taskDao().getTasks())
     }
 
-    override fun saveTask(task: Task): Error? {
+    override fun saveTask(task: Task): Throwable? {
         return null
     }
 
-    override fun deleteAllTasks(): Error? {
+    override fun deleteAllTasks(): Throwable? {
         return null
     }
+
+    override fun completeTask(id: Int): Response<Void?> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun activateTask(id: Int): Response<Void?> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 }

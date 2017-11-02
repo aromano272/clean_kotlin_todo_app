@@ -3,23 +3,21 @@ package com.aromano.cleankotlintodoapp.ui.base
 import java.lang.ref.WeakReference
 
 
-abstract class BasePresenter<T> {
+abstract class BasePresenter<T>(view: T) {
 
     private var view: WeakReference<T>? = null
 
-    constructor(view: T) {
-        this.view = WeakReference<T>(view)
-    }
-
-    protected fun getView(): T? {
-        return view?.get()
-    }
-
-    protected fun attach(view: T) {
+    init {
         this.view = WeakReference(view)
     }
 
-    protected fun detach() {
+    protected fun getView(): T? = view?.get()
+
+    internal fun attach(view: T) {
+        this.view = WeakReference(view)
+    }
+
+    internal fun detach() {
         this.view = null
     }
 
